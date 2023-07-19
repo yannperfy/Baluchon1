@@ -1,0 +1,47 @@
+
+{
+    "coord": {
+        "lon": 2.3522,
+        "lat": 48.8566
+    },
+    "weather": [
+        {
+            "id": 520,
+            "main": "Rain",
+            "description": "petites averses",
+            "icon": "09d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 25.15,
+        "feels_like": 25.5,
+        "temp_min": 24.27,
+        "temp_max": 25.71,
+        "pressure": 1016,
+        "humidity": 68
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 3.6,
+        "deg": 330
+    },
+    "rain": {
+        "1h": 0.49
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1658508304,
+    "sys": {
+        "type": 2,
+        "id": 2041230,
+        "country": "FR",
+        "sunrise": 1658463046,
+        "sunset": 1658518977
+    },
+    "timezone": 7200,
+    "id": 6455259,
+    "name": "Paris",
+    "cod": 200
+}

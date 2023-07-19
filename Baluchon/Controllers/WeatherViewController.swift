@@ -61,6 +61,7 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var stackVille1: UIStackView!
     
     @IBOutlet weak var stackVille2: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         stackVille1.layer.cornerRadius = 10
@@ -79,31 +80,50 @@ class WeatherViewController: UIViewController {
         
         viewRessentir.layer.cornerRadius = 20
         viewVisibité.layer.cornerRadius = 20
+        
+        searchWeather()
     }
     
     @IBAction func didTapWeatherButton() {
-        searchWeather() 
+        searchWeather() // celui avec le parametre textfield.text
      
     }
+    
     func searchWeather() {
+        toggleActivityIndicator(shown: true)
         guard let name = textField.text else { return }
 
-        toggleActivityIndicator(shown: true)
         WeatherService.shared.getWeather(name: name) { (success, data) in
             self.toggleActivityIndicator(shown: false)
             if success, let data = data {
-                self.updateName(withWeather: data)
+                self.updateName3(withWeather: data)
+                    
                 
+                WeatherService.shared.getWeather(name: "Strasbourg") { (success, data) in
+                    if success, let data = data {
+                        self.updateName1(withWeather: data)
+                    } else {
+                        self.presentAlert()
+                    }
+                    
+                    WeatherService.shared.getWeather(name: "Paris") { (success, data) in
+                        if success, let data = data {
+                            self.updateName(withWeather: data)
+                        } else {
+                            self.presentAlert()
+                        }
+                    }
+                }
             } else {
                 self.presentAlert()
             }
+            
         }
     }
 
     
     private func updateName(withWeather weather: Weather) {
         self.visibilité2.text = weather.weather.first?.weatherDescription
-        self.visibilité.text = weather.weather.first?.weatherDescription
         self.temperature2.text = String(weather.main.temp)
         self.paysCode2.text = String(weather.sys.country)
   
@@ -116,7 +136,7 @@ class WeatherViewController: UIViewController {
     }
     
     private func updateName1(withWeather weather: Weather) {
-        self.visibilité.text = weather.weather.first?.weatherDescription
+        self.visibilité1.text = weather.weather.first?.weatherDescription
         self.visibilité.text = weather.weather.first?.weatherDescription
         self.temperature1.text = String(weather.main.temp)
         self.paysCode1.text = String(weather.sys.country)
@@ -124,12 +144,23 @@ class WeatherViewController: UIViewController {
         self.humidté.text = String(weather.main.humidity)
         self.lever.text =  weather.weather.first?.weatherDescription
         self.pression.text = String(weather.main.pressure)
-        self.ville2.text = weather.name
+        self.ville1.text = weather.name
         
        
     }
     
+    private func updateName3(withWeather weather: Weather) {
+        self.visibilité3.text = weather.weather.first?.weatherDescription
+        self.temperature3.text = String(weather.main.temp)
+        self.paysCode3.text = String(weather.sys.country)
   
+        self.humidté.text = String(weather.main.humidity)
+        self.lever.text =  weather.weather.first?.weatherDescription
+        self.pression.text = String(weather.main.pressure)
+        self.ville3.text = weather.name
+        
+       
+    }
         
         
     private func toggleActivityIndicator(shown: Bool) {

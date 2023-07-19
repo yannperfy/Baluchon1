@@ -12,6 +12,7 @@ class CurrencyViewController: UIViewController {
     @IBOutlet weak var textField1: UITextField!
     
     @IBOutlet weak var textField2: UITextField!
+    @IBOutlet weak var convertisseur: UIButton!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -21,7 +22,7 @@ class CurrencyViewController: UIViewController {
         super.viewDidLoad()
    
         convert.layer.cornerRadius = 20
-       
+        convertisseur.layer.cornerRadius = 20
         
     }
     

@@ -15,10 +15,7 @@ class WeatherService {
     
     func getWeather(name: String, callback: @escaping (Bool, Weather?) -> Void ) {
         let appid = "9a386b6bc09f6242c939cba9ff20a57c"
-        let lat = "48.856614"
-        let lon = "2.3522219"
         let units = "metric"
-       
         
         let feelsLike = "feels_like"
         let tempMin = "temp_min"
@@ -27,7 +24,7 @@ class WeatherService {
         
         let session = URLSession(configuration: .default)
         
-        guard let url = URL(string: "\(WeatherService.baseUrl)&lat=\(lat)&lon=\(lon)&appid=\(appid)&feelsLike=\(feelsLike)&tempMin=\(tempMin)&tempMax=\(tempMax)&units=\(units)&lang=\(lang)") else {
+        guard let url = URL(string: "\(WeatherService.baseUrl)&appid=\(appid)&feelsLike=\(feelsLike)&tempMin=\(tempMin)&tempMax=\(tempMax)&units=\(units)&lang=\(lang)&q=\(name)") else {
             callback(false, nil)
             return
         }
