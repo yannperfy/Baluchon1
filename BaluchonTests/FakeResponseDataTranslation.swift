@@ -8,8 +8,8 @@
 import Foundation
 class FakeResponseDataTranslation {
     
-        static let responseOk = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        static let responseKO = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+        static let responseOk = HTTPURLResponse(url: URL(string: "https://translation.googleapis.com/language/translate/v2?")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        static let responseKO = HTTPURLResponse(url: URL(string: "https://translation.googleapis.com/language/translate/v2?")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
         class TranslationError: Error{}
         static let error = TranslationError()
     

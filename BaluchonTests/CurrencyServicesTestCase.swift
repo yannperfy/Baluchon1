@@ -4,7 +4,7 @@
 //
 //  Created by Yann Perfy on 27/06/2022.
 import XCTest
-
+@testable import ClassCurrency
 
 
 class CurrencyServicesTestCase: XCTestCase {
@@ -14,10 +14,10 @@ class CurrencyServicesTestCase: XCTestCase {
         let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: nil, response: nil, error: FakeResponseDataCurrency.error), imageSession: URLSessionFakeCurrency(data: nil, response: nil, error: nil))
         // When
         let expectation = XCTestExpectation(description: "wait for queue change")
-        currencyService.getCurrency { success, quote in
+        currencyService.getCurrency { success, currency in
             // Then
             XCTAssertFalse(success)
-            XCTAssertNil(quote)
+            XCTAssertNil(currency)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 0.01)
@@ -28,10 +28,10 @@ class CurrencyServicesTestCase: XCTestCase {
         let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: nil, response: nil, error: nil), imageSession: URLSessionFakeCurrency(data: nil, response: nil, error: nil))
         // When
         let expectation = XCTestExpectation(description: "wait for queue change")
-        currencyService.getCurrency { success, quote in
+        currencyService.getCurrency { success, currency in
             // Then
             XCTAssertFalse(success)
-            XCTAssertNil(quote)
+            XCTAssertNil(currency)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 0.01)
@@ -42,10 +42,10 @@ class CurrencyServicesTestCase: XCTestCase {
         let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: FakeResponseDataCurrency.currencyCorrectData, response: FakeResponseDataCurrency.responseKO, error: nil), imageSession: URLSessionFakeCurrency(data: nil, response: nil, error: nil))
         // When
         let expectation = XCTestExpectation(description: "wait for queue change")
-        currencyService.getCurrency { success, quote in
+        currencyService.getCurrency { success, currency in
             // Then
             XCTAssertFalse(success)
-            XCTAssertNil(quote)
+            XCTAssertNil(currency)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 0.01)
@@ -53,13 +53,13 @@ class CurrencyServicesTestCase: XCTestCase {
     
     func testGetCurrencyShouldPostFailedCallbackIfIncorrectData() {
         // Given
-        let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: FakeResponseDataCurrency.currencyIncorrectData, response: FakeResponseDataCurrency.responseOk, error: nil), imageSession: URLSessionFakeCurrency(data: nil, response: nil, error: nil))
+        let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: FakeResponseDataCurrency.currencyIncorrectData, response: FakeResponseDataCurrency.responseOk, error: nil))
         // When
         let expectation = XCTestExpectation(description: "wait for queue change")
-        currencyService.getCurrency { success, quote in
+        currencyService.getCurrency { success, currency in
             // Then
             XCTAssertFalse(success)
-            XCTAssertNil(quote)
+            XCTAssertNil(currency)
             expectation.fulfill()
         }
         waitForExpectations(timeout: 0.01)
@@ -70,7 +70,7 @@ class CurrencyServicesTestCase: XCTestCase {
         let currencyService = CurrencyService(currencySession: URLSessionFakeCurrency(data: FakeResponseDataCurrency.currencyCorrectData, response: FakeResponseDataCurrency.responseOk, error: nil), imageSession: URLSessionFakeCurrency(data: nil, response: nil, error: nil))
         // When
         let expectation = XCTestExpectation(description: "wait for queue change")
-        currencyService.getCurrency { success, quote in
+        currencyService.getCurrency { success, currency in
             // Then
             
             let result = "31.69002"

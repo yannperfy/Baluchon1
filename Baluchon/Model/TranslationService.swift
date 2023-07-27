@@ -22,13 +22,16 @@ class TranslationService {
     private let translationUrl = URL(string: "https://translation.googleapis.com/language/translate/v2?")!
     
     private var task: URLSessionDataTask?
+    private var translationSession = URLSession(configuration: .default)
     
+    init(translationSession: URLSession) {
+        self.translationSession = translationSession
+    }
     func getTranslation(q: String, callback: @escaping (Bool, Translation?) -> Void ) {
         let key = "AIzaSyDdgwS_svJd7zlu9i-WSOHWab-lUr1Hdqk"
         let source = "fr"
         let target = "en"
         
-        let session = URLSession(configuration: .default)
 
         var request = URLRequest(url: translationUrl)
         request.httpMethod = "POST"
@@ -37,7 +40,7 @@ class TranslationService {
         request.httpBody = body.data(using: .utf8)
         
     task?.cancel()
-       let task = session.dataTask(with: request) { (data, response, error) in
+       let task = translationSession.dataTask(with: request) { (data, response, error) in
             DispatchQueue.main.async {
                 guard let data = data, error == nil,
                       let response = response as? HTTPURLResponse, response.statusCode == 200 else {

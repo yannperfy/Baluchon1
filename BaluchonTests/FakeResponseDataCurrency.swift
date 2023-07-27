@@ -8,8 +8,8 @@
 import Foundation
 
 class FakeResponseDataCurrency {
-        static let responseOk = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        static let responseKO = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+        static let responseOk = HTTPURLResponse(url: URL(string: "https://api.apilayer.com/fixer/convert?")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        static let responseKO = HTTPURLResponse(url: URL(string: "https://api.apilayer.com/fixer/convert?")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
         class CurrencyError: Error{}
         static let error = CurrencyError()
     
@@ -22,5 +22,5 @@ class FakeResponseDataCurrency {
     }
     
     static let currencyIncorrectData = "erreur".data(using: .utf8)!
-    static let imageData = "image".data(using: .utf8)!
+ 
 }

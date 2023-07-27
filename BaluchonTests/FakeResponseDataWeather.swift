@@ -7,10 +7,10 @@
 
 import Foundation
 class FakeResponseDataWeather {
-        static let responseOk = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        static let responseKO = HTTPURLResponse(url: URL(string: "http://api.forismatic.com/api/1.0/")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
-        class QuoteError: Error{}
-        static let error = QuoteError()
+        static let responseOk = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/data/2.5/weather?")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+        static let responseKO = HTTPURLResponse(url: URL(string: "https://api.openweathermap.org/data/2.5/weather?")!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+        class WeatherError: Error{}
+        static let error = WeatherError()
     
     static var weatherCorrectData: Data {
         let bundle = Bundle(for: FakeResponseDataWeather.self)

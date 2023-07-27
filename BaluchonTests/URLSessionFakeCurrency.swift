@@ -48,4 +48,7 @@ class URLSessionDataTaskFakeCurrency: URLSessionDataTask {
         completionHandler?(data, urlResponse, responseError)
         
     }
+    override func cancel() {
+        
+    }
 }
