@@ -169,7 +169,7 @@ class WeatherViewController: UIViewController {
     }
 
     private func presentAlert() {
-        let alertVC =   UIAlertController(title: "error", message: "could not find weather ", preferredStyle: .alert )
+        let alertVC =   UIAlertController(title: "urgent", message: "put the city in the empty space ", preferredStyle: .alert )
         alertVC.addAction(UIAlertAction(title: "ok", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     

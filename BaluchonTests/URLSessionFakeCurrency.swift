@@ -18,6 +18,12 @@ class URLSessionFakeCurrency: URLSession {
         self.response = response
         self.error = error
     }
+    func createURLSession() -> URLSession {
+           let configuration = URLSessionConfiguration.default
+           return URLSession(configuration: configuration)
+       }
+    
+    
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         let task = URLSessionDataTaskFakeCurrency()
         task.completionHandler = completionHandler
