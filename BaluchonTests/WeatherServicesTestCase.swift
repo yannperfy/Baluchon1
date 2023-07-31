@@ -7,7 +7,7 @@ import XCTest
 @testable import Baluchon
 
 class WeatherServicesTestCase: XCTestCase {
-
+    
     func testGetWeatherShouldPostFailedCallbackIfError() {
         // Given
         let weatherService = WeatherService(
